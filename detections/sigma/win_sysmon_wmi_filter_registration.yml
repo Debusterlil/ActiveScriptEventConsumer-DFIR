@@ -1,0 +1,30 @@
+title: WMI Event Filter Registration
+name: wmi_event_filter_registration
+id: 7f93ec2a-4dd9-4e53-b7df-4a3d64c52901
+status: experimental
+description: Detects registration of a permanent WMI event filter through Sysmon Event ID 19.
+author: Debuster
+date: 2026-07-23
+references:
+    - https://learn.microsoft.com/sysinternals/downloads/sysmon
+tags:
+    - attack.persistence
+    - attack.t1546.003
+logsource:
+    product: windows
+    service: sysmon
+detection:
+    selection:
+        EventID: 19
+    condition: selection
+fields:
+    - Computer
+    - UtcTime
+    - User
+    - EventNamespace
+    - Name
+    - Query
+falsepositives:
+    - Legitimate systems-management software
+    - Authorized administrative automation
+level: medium

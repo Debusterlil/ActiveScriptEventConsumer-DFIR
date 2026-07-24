@@ -1,0 +1,31 @@
+title: WMI Event Consumer Registration
+name: wmi_event_consumer_registration
+id: 45d3c95e-7b39-4a41-9d8a-b9b9b3c91320
+status: experimental
+description: Detects registration of a permanent WMI event consumer through Sysmon Event ID 20.
+author: Debuster
+date: 2026-07-23
+references:
+    - https://learn.microsoft.com/sysinternals/downloads/sysmon
+tags:
+    - attack.persistence
+    - attack.t1546.003
+logsource:
+    product: windows
+    service: sysmon
+detection:
+    selection:
+        EventID: 20
+    condition: selection
+fields:
+    - Computer
+    - UtcTime
+    - User
+    - EventNamespace
+    - Name
+    - Type
+    - Destination
+falsepositives:
+    - Legitimate systems-management software
+    - Authorized permanent WMI consumers
+level: medium

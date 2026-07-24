@@ -1,0 +1,23 @@
+=== HIGH-CONFIDENCE WMI DETECTION VALIDATION ===
+
+[MATCH 20] 2026-07-20 22:36:26.396 | Consumer=BlackCatConsumer | Type=Script | Destination=[REDACTED, 1002 characters]
+[MATCH 19] 2026-07-20 22:36:26.401 | Filter=BlackCatFilter | Namespace=Root\\Cimv2 | Query=SELECT * FROM Win32_ProcessStartTrace WHERE ProcessName = 'notepad.exe'
+[MATCH 21] 2026-07-20 22:36:26.402 | Consumer=BlackCatConsumer | Filter=BlackCatFilter
+
+=== TEMPORAL CORRELATION ===
+[PASS] Event ID 19, 20 and 21 detected
+[PASS] Registration interval: 0.006 seconds
+[PASS] Correlation window 1m satisfied
+
+=== SCRCONS PROCESS EXECUTION ===
+[MATCH] 2026-07-20 22:44:55.326 | PID=7128 | Image=C:\Windows\System32\wbem\scrcons.exe | Parent=C:\Windows\System32\svchost.exe | User=NT AUTHORITY\СИСТЕМА
+
+=== POWERSHELL SCRIPT BLOCK ===
+[MATCH 4104] Local=2026-07-20 22:36:26.274 | Record=7749 | Length=3423 | SHA256=55CF3A9CC62BCF90B94F95CE767B46582156B7832CF35BF936FEE728AB0F2A41 | ScriptBlockText=[REDACTED]
+
+=== RESULT ===
+[PASS] Sysmon WMI components
+[PASS] Temporal correlation
+[PASS] scrcons.exe execution
+[PASS] PowerShell 4104
+[PASS] Detection package validated against case telemetry

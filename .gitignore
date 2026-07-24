@@ -1,0 +1,42 @@
+# Memory and forensic images
+*.raw
+*.mem
+*.dmp
+*.vmem
+
+# Windows evidence
+*.evtx
+*.pf
+*.dat
+*.vacb
+
+# Archives and private packages
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*Master_Private*
+*NoMemory*
+
+# Internal case material
+17_detection_validation.txt
+black_cat_pre_cleanup_*.txt
+OBJECTS.DATA*
+00_manifest_sha256.txt
+
+# Secrets and credentials
+*.pem
+*.key
+*.pfx
+*.p12
+.env
+.env.*
+
+# Local tooling
+.venv/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

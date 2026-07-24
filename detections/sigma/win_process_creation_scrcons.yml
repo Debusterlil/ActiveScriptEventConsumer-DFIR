@@ -1,0 +1,29 @@
+title: Microsoft WMI Script Host Process Execution
+name: microsoft_wmi_script_host_execution
+id: 4f6f2b10-5a86-4c4d-a582-4d5f44f93c0a
+status: experimental
+description: Detects execution of scrcons.exe, which hosts ActiveScriptEventConsumer scripts.
+author: Debuster
+date: 2026-07-23
+tags:
+    - attack.persistence
+    - attack.t1546.003
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\scrcons.exe'
+    condition: selection
+fields:
+    - Computer
+    - UtcTime
+    - User
+    - Image
+    - CommandLine
+    - ParentImage
+    - ProcessId
+    - ParentProcessId
+falsepositives:
+    - Authorized ActiveScriptEventConsumer execution
+level: high

@@ -1,0 +1,25 @@
+title: Permanent WMI Subscription Components Registered
+name: permanent_wmi_subscription_components
+id: a4d0b6ce-b2fc-4fa9-b59e-6ab2bb876c21
+status: experimental
+description: >
+    Detects registration of a WMI event filter, event consumer and
+    filter-to-consumer binding on the same computer within one minute.
+author: Debuster
+date: 2026-07-23
+tags:
+    - attack.persistence
+    - attack.t1546.003
+correlation:
+    type: temporal
+    rules:
+        - 7f93ec2a-4dd9-4e53-b7df-4a3d64c52901
+        - 45d3c95e-7b39-4a41-9d8a-b9b9b3c91320
+        - b5714964-25e8-4014-a6e8-4cbb1cd42121
+    group-by:
+        - Computer
+    timespan: 1m
+falsepositives:
+    - Authorized deployment of a permanent WMI subscription
+    - Legitimate systems-management or monitoring software
+level: high

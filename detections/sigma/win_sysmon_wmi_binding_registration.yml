@@ -1,0 +1,30 @@
+title: WMI Filter To Consumer Binding Registration
+name: wmi_filter_to_consumer_binding
+id: b5714964-25e8-4014-a6e8-4cbb1cd42121
+status: experimental
+description: Detects creation of a permanent WMI filter-to-consumer binding through Sysmon Event ID 21.
+author: Debuster
+date: 2026-07-23
+references:
+    - https://learn.microsoft.com/sysinternals/downloads/sysmon
+tags:
+    - attack.persistence
+    - attack.t1546.003
+logsource:
+    product: windows
+    service: sysmon
+detection:
+    selection:
+        EventID: 21
+    condition: selection
+fields:
+    - Computer
+    - UtcTime
+    - User
+    - EventNamespace
+    - Consumer
+    - Filter
+falsepositives:
+    - Legitimate systems-management software
+    - Authorized permanent WMI subscriptions
+level: medium

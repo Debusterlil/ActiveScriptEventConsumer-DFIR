@@ -1,0 +1,36 @@
+title: PowerShell Permanent WMI Subscription Registration
+name: powershell_permanent_wmi_subscription_registration
+id: 6e06f9ab-1d73-42fa-a8ca-2f70f13ed4cb
+status: experimental
+description: >
+    Detects a PowerShell script block containing the principal components
+    used to register a permanent WMI subscription.
+author: Debuster
+date: 2026-07-23
+tags:
+    - attack.persistence
+    - attack.t1546.003
+    - attack.execution
+    - attack.t1059.001
+logsource:
+    product: windows
+    service: powershell
+detection:
+    selection_event:
+        EventID: 4104
+    selection_content:
+        ScriptBlockText|contains|all:
+            - 'root\subscription'
+            - 'ActiveScriptEventConsumer'
+            - '__EventFilter'
+            - '__FilterToConsumerBinding'
+    condition: selection_event and selection_content
+fields:
+    - Computer
+    - User
+    - ScriptBlockId
+    - ScriptBlockText
+falsepositives:
+    - Authorized administrative scripts that deploy permanent WMI subscriptions
+    - Legitimate systems-management automation
+level: high
